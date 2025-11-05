@@ -1,15 +1,17 @@
 /*
 =============================================
-MÓDULO 4: LAYOUT MODERNO
+MÓDULO 6: EFECTOS Y ANIMACIONES
 =============================================
-Proyecto final del Módulo 4
-BUILDS ON: Módulo 1 + Módulo 2 + Módulo 3
+Proyecto final del Módulo 6
+BUILDS ON: Módulo 1 + 2 + 3 + 4 + 5
 NUEVO en este módulo:
-- Flexbox para navegación y componentes
-- CSS Grid para layouts principales
-- Alineación y distribución avanzada
-- Gap y espaciado moderno
-NO usamos aún: Media Queries, Animaciones, Transiciones
+- Transiciones CSS
+- Animaciones con @keyframes
+- Transforms 2D y 3D
+- Efectos hover avanzados
+- Micro-interacciones
+- Optimización de rendimiento
+INCLUYE TODO: Este es el proyecto completo con todas las características
 =============================================
 */
 
@@ -44,8 +46,8 @@ h1,
 h2,
 h3,
 h4 {
-  /* MEJORADO: Fuente Lexend para títulos */
-  font-family: "Lexend", sans-serif;
+  /* MEJORADO: Fuente display para títulos */
+  font-family: "Playfair Display", Georgia, serif;
   font-weight: 700;
   line-height: 1.2;
   color: #1a1a1a;
@@ -156,7 +158,7 @@ ul {
   color: #1a1a1a;
   margin-bottom: 8px;
   /* MEJORADO: Usando Playfair Display */
-  font-family: "Lexend", sans-serif;
+  font-family: "Playfair Display", serif;
   font-weight: 900;
   letter-spacing: -0.03em;
 }
@@ -280,7 +282,7 @@ ul {
   font-weight: 700;
   color: #2563eb;
   margin-bottom: 0.5rem;
-  font-family: "Lexend", sans-serif;
+  font-family: "Playfair Display", serif;
   letter-spacing: -0.02em;
 }
 
@@ -388,7 +390,7 @@ ul {
   margin-bottom: 1rem;
   line-height: 1.7;
   /* NUEVO: Mejor tipografía para citas */
-  font-family: "Lexend", sans-serif;
+  font-family: "Playfair Display", serif;
   font-weight: 400;
 }
 
@@ -514,7 +516,7 @@ ul {
 .project__title {
   color: #1a1a1a;
   margin-bottom: 1rem;
-  font-family: "Lexend", sans-serif;
+  font-family: "Playfair Display", serif;
 }
 
 .project__description {
@@ -1861,6 +1863,11 @@ h2 {
      49. PREFERENCIAS DE USUARIO - MÓDULO 5
      =========================================== */
 
+/* Modo oscuro del sistema - DESHABILITADO para mantener paleta clara */
+/* @media (prefers-color-scheme: dark) {
+      Los colores se mantienen claros para mejor contraste
+  } */
+
 /* Reducir movimiento */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -1908,4 +1915,636 @@ h2 {
 .fluid-container {
   width: min(90%, 1200px);
   margin: 0 auto;
+}
+
+/* 
+  ╔═══════════════════════════════════════════════════════════════════════════╗
+  ║                                                                           ║
+  ║  MÓDULO 6: CÓDIGO NUEVO - EFECTOS Y ANIMACIONES                          ║
+  ║  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ║
+  ║  A partir de aquí todo es código NUEVO del Módulo 6                     ║
+  ║  Transiciones, Animaciones, Transforms, Efectos Hover                   ║
+  ║                                                                           ║
+  ╚═══════════════════════════════════════════════════════════════════════════╝
+  */
+
+/* ===========================================
+     51. TRANSICIONES GLOBALES - NUEVO MÓDULO 6
+     =========================================== */
+
+/* Aplicar transiciones suaves a elementos interactivos */
+a,
+button,
+.button,
+.nav__link,
+.project,
+.values__item,
+.contact__method,
+.tag,
+.skill__progress {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Transiciones más rápidas para hover */
+a:hover,
+button:hover,
+.button:hover {
+  transition-duration: 0.2s;
+}
+
+/* ===========================================
+     52. ANIMACIONES KEYFRAMES - MÓDULO 6
+     =========================================== */
+
+/* Animación de entrada fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Animación de gradiente */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animación de ola */
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Animación de typing */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Animación de blink */
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--color-primary);
+  }
+}
+
+/* Animación de float */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Animación de slide in */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ===========================================
+     53. HERO ANIMADO - MÓDULO 6
+     =========================================== */
+
+/* Animación del título hero */
+.hero__title {
+  animation: fadeIn 0.8s ease-out;
+  position: relative;
+}
+
+.hero__subtitle {
+  animation: fadeIn 1s ease-out 0.2s both;
+}
+
+.hero__description {
+  animation: fadeIn 1.2s ease-out 0.4s both;
+}
+
+.hero__actions {
+  animation: fadeIn 1.4s ease-out 0.6s both;
+}
+
+.hero__stats {
+  animation: fadeIn 1.6s ease-out 0.8s both;
+}
+
+/* Efecto de typing para el título */
+.hero__title::after {
+  content: "|";
+  position: absolute;
+  right: -10px;
+  animation: blink 1s infinite;
+  color: var(--color-primary);
+}
+
+/* Gradiente animado en el hero */
+.hero {
+  background-size: 200% 200%;
+  animation: gradientShift 10s ease infinite;
+}
+
+/* Números con animación de contador */
+.stat__number {
+  animation: pulse 2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.stat:nth-child(1) .stat__number {
+  --delay: 0s;
+}
+
+.stat:nth-child(2) .stat__number {
+  --delay: 0.2s;
+}
+
+.stat:nth-child(3) .stat__number {
+  --delay: 0.4s;
+}
+
+/* ===========================================
+     54. NAVEGACIÓN ANIMADA - MÓDULO 6
+     =========================================== */
+
+/* Header con animación al cargar */
+.header {
+  animation: slideInFromTop 0.5s ease-out;
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Enlaces de navegación con underline animado */
+.nav__link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav__link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: width 0.3s ease;
+}
+
+.nav__link:hover::before {
+  width: 100%;
+}
+
+/* Active link con animación */
+.nav__link--active {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ===========================================
+     55. BOTONES ANIMADOS - MÓDULO 6
+     =========================================== */
+
+/* Efecto ripple en botones */
+.button {
+  position: relative;
+  overflow: hidden;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.button:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Botón con hover 3D */
+.button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ===========================================
+     56. CARDS ANIMADAS - MÓDULO 6
+     =========================================== */
+
+/* Projects con entrada escalonada */
+.project {
+  animation: fadeIn 0.6s ease-out both;
+  animation-delay: calc(var(--index, 0) * 0.1s);
+  transform-origin: center bottom;
+}
+
+.project:nth-child(1) {
+  --index: 1;
+}
+.project:nth-child(2) {
+  --index: 2;
+}
+.project:nth-child(3) {
+  --index: 3;
+}
+
+/* Hover con rotación 3D */
+.project:hover {
+  transform: translateY(-8px) rotateX(2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge animado */
+.project__badge {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Tags con hover */
+.tag {
+  transform: scale(1);
+}
+
+.tag:hover {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================================
+     57. VALORES ANIMADOS - MÓDULO 6
+     =========================================== */
+
+/* Iconos con animación */
+.values__icon {
+  display: inline-block;
+  animation: wave 2s ease-in-out infinite;
+  animation-delay: calc(var(--index, 0) * 0.5s);
+}
+
+.values__item:nth-child(1) .values__icon {
+  --index: 0;
+}
+.values__item:nth-child(2) .values__icon {
+  --index: 1;
+}
+.values__item:nth-child(3) .values__icon {
+  --index: 2;
+}
+.values__item:nth-child(4) .values__icon {
+  --index: 3;
+}
+
+/* Hover con glow */
+.values__item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1),
+    0 0 0 1px rgba(37, 99, 235, 0.1);
+}
+
+/* ===========================================
+     58. SKILLS ANIMADAS - MÓDULO 6
+     =========================================== */
+
+/* Barras de progreso animadas */
+@keyframes fillProgress {
+  from {
+    width: 0;
+  }
+}
+
+.skill__progress {
+  animation: fillProgress 1.5s ease-out forwards;
+  animation-delay: calc(var(--index, 0) * 0.2s);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill__progress--html {
+  --index: 0;
+  animation-duration: 1.5s;
+}
+
+.skill__progress--css {
+  --index: 1;
+  animation-duration: 1.3s;
+}
+
+.skill__progress--js {
+  --index: 2;
+  animation-duration: 0.8s;
+}
+
+/* Efecto de brillo en las barras */
+.skill__progress::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+  animation-delay: 2s;
+}
+
+@keyframes shimmer {
+  to {
+    left: 100%;
+  }
+}
+
+/* ===========================================
+     59. QUOTE ANIMADA - MÓDULO 6
+     =========================================== */
+
+/* Quote con entrada desde la izquierda */
+.quote {
+  animation: slideInFromLeft 0.8s ease-out;
+  position: relative;
+}
+
+/* Comillas animadas */
+.quote::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 4rem;
+  color: var(--color-primary);
+  opacity: 0.2;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ===========================================
+     60. CONTACT ANIMADO - MÓDULO 6
+     =========================================== */
+
+/* Métodos de contacto con hover 3D */
+.contact__method {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.contact__method:hover {
+  transform: translateY(-10px) rotateX(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(37, 99, 235, 0.1);
+}
+
+/* Iconos con animación de rebote */
+.contact__method-title {
+  animation: bounce 2s ease-in-out infinite;
+  animation-delay: calc(var(--index, 0) * 0.2s);
+}
+
+.contact__method:nth-child(1) .contact__method-title {
+  --index: 0;
+}
+.contact__method:nth-child(2) .contact__method-title {
+  --index: 1;
+}
+.contact__method:nth-child(3) .contact__method-title {
+  --index: 2;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ===========================================
+     61. FOOTER ANIMADO - MÓDULO 6
+     =========================================== */
+
+/* Footer con entrada desde abajo */
+.footer {
+  animation: slideInFromBottom 0.8s ease-out;
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Enlaces del footer con hover */
+.footer__link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.footer__link:hover {
+  transform: translateY(-2px);
+  color: var(--color-primary-light);
+}
+
+/* ===========================================
+     62. SCROLL ANIMATIONS - MÓDULO 6
+     =========================================== */
+
+/* Elementos que aparecen al hacer scroll */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================================
+     63. LOADING ANIMATION - MÓDULO 6
+     =========================================== */
+
+/* Animación de carga */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid transparent;
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ===========================================
+     64. FOCUS STATES ANIMADOS - MÓDULO 6
+     =========================================== */
+
+/* Focus con animación */
+a:focus,
+button:focus,
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+  animation: focusPulse 1.5s infinite;
+}
+
+@keyframes focusPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.1);
+  }
+}
+
+/* ===========================================
+     65. MICRO-INTERACCIONES - MÓDULO 6
+     =========================================== */
+
+/* Hover sutil en textos */
+p:hover {
+  transition: color 0.3s ease;
+  color: var(--color-gray-dark);
+}
+
+/* Enlaces con scale */
+a:active {
+  transform: scale(0.98);
+}
+
+/* Imágenes con zoom suave */
+img {
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+/* ===========================================
+     66. PERFORMANCE OPTIMIZATIONS - MÓDULO 6
+     =========================================== */
+
+/* Usar will-change para optimizar animaciones */
+.button,
+.project,
+.values__item,
+.skill__progress {
+  will-change: transform;
+}
+
+/* Eliminar will-change después del hover */
+.button:not(:hover),
+.project:not(:hover),
+.values__item:not(:hover) {
+  will-change: auto;
+}
+
+/* GPU acceleration para animaciones suaves */
+.hero,
+.project,
+.button {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
